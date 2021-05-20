@@ -13,6 +13,7 @@ import Store from "./components/Store";
 
 
 export default {
+  // component that needs to be presented to the users should be reference here.
   name: 'App',
   components: {
     Store,
