@@ -4,7 +4,8 @@
     <div class="btn-group mx-2">
       <button v-for="i in pageNumbers" v-bind:key="i"
               class="btn btn-secpmdary"
-              v-bind:class="{ 'btn-primary': i == currentPage }">
+              v-bind:class="{ 'btn-primary': i == currentPage }"
+              v-on:click="setCurrentPage(i)">
         {{ i }}
       </button>
     </div>
@@ -13,7 +14,7 @@
 
 <script>
 
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "PageControl",
@@ -23,6 +24,10 @@ export default {
     pageNumbers() {
       return [...Array(this.pageCount + 1).keys()].slice(1);
     }
+  },
+
+  methods: {
+    ...mapMutations(["setCurrentPage"])
   }
 }
 // export default {
