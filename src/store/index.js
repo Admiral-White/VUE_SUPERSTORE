@@ -1,8 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Axios from "axios";
 
 Vue.use(Vuex);
 let testData = [];
+
+let baseUrl = "http://localhost:3500";
+let productsUrl = `${baseUrl}/products`;
+let categoriesUrl = `${baseUrl}/categories`;
 
 // this code block is used to generate the dummy product list used as sample.
 // this is the data store.
@@ -18,19 +23,14 @@ export default new Vuex.Store({
     strict: true,
     state: {
         products: testData,
+        categoriesData: [],
         productsTotal: testData.length,
         currentPage: 1,
         pageSize: 4,
         currentCategory: "All"  // used for the category
     },
 
-    // getters: {
-    //     processedProducts: state => {
-    //         let index = (state.currentPage -1) * state.pageSize;
-    //         return state.products.slice(index, index + state.pageSize);
-    //     },
-    //     pageCount: state => Math.ceil(state.productsTotal / state.pageSize)
-    // },
+
 
     getters:{
         productsFilteredByCategory: state => state.products  // used to filter product by category
@@ -43,8 +43,10 @@ export default new Vuex.Store({
         },
         pageCount: (state, getters) =>
             Math.ceil(getters.productsFilteredByCategory.length / state.pageSize),
-        categories: state => ["All",
-            ...new Set(state.products.map(p => p.category).sort())]
+        // categories: state => ["All",
+        //     ...new Set(state.products.map(p => p.category).sort())],
+        categories: state => ["All", ...state.categoriesData]
+
 
 
     },
@@ -59,9 +61,23 @@ export default new Vuex.Store({
             state.currentPage = 1;
         },
 
-        setCurrentCategory(state, category) {
+        setCurrentCategory(state, category) {     // method to set current category
             state.currentCategory = category;
             state.currentPage = 1;
+        },
+
+        setData(state, data) {   // method to set data(product and category data)
+            state.products = data.product_data;
+            state.productsTotal = data.product_data.length;
+            state.categoriesData = data.category_data.sort();
+        }
+    },
+    // Axios is used for HTTP request
+    actions: {    // used to get action for the url called and the data given
+        async getData(context) {
+            let product_data = (await Axios.get(productsUrl)).data;
+            let category_data = (await Axios.get(categoriesUrl)).data;
+            context.commit("setData", { product_data, category_data} );
         }
     }
 })

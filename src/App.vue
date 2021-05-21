@@ -10,6 +10,7 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import Store from "./components/Store";
+import { mapActions } from "vuex";
 
 
 export default {
@@ -19,7 +20,15 @@ export default {
     Store,
 
     // HelloWorld
+  },
+// the method below is used to get the stored restful data
+  methods: {
+    ...mapActions(["getData"])
+  },
+  created() {
+    this.getData();
   }
+
 }
 </script>
 
