@@ -8,7 +8,13 @@
 <!--               currency is added with the price.-->
             </span>
         </h4>
-        <div class="card-text bg-white p-1">{{ p.description }}</div>
+        <div class="card-text bg-white p-1">{{ p.description }}
+          <!--button feature to enable add to cart functionality-->
+          <button class="btn btn-success btn-sm float-right"
+                  v-on:click="handleProductAdd(p)">
+            Add To Cart
+          </button>
+        </div>
     </div>
     <page-control/>
   </div>
@@ -16,7 +22,7 @@
 
 <script>
 // import { mapState } from "vuex";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";  // mapMutation added for the cart functionality
 import PageControl from "./PageControl";
 
 export default {
@@ -26,14 +32,22 @@ export default {
 
     // ...mapState(["products"]) -- used before to map the state of products
 
-    ...mapGetters({ products: "processedProducts" })
+    ...mapGetters({products: "processedProducts"})
   },
 
   // the code block below is used to add a currency place holder to the price (using filter to format currency value)
   filters: {
     currency(value) {
       return new Intl.NumberFormat("en-US",
-          { style: "currency", currency: "USD" }).format(value);
+          {style: "currency", currency: "USD"}).format(value);
+    }
+  },
+
+  methods: {   // method implementing mapMutation declared above
+    ...mapMutations({addProduct: "cart/addProduct"}),
+    handleProductAdd(product) {
+      this.addProduct(product);
+      this.$router.push("/cart");
     }
   }
 }
