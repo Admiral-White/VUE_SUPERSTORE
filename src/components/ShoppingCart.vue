@@ -75,9 +75,7 @@ export default {
   }
 }
 
-// export default {
-//   name: "ShoppingCart"
-// }
+
 </script>
 
 <style scoped>
