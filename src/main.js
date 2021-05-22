@@ -11,6 +11,7 @@ import "font-awesome/css/font-awesome.min.css"
 
 Vue.config.productionTip = false
 
+// the code block below is a global filter used in the application to set currency
 Vue.filter("currency", (value) => new Intl.NumberFormat("en-US",
     { style: "currency", currency: "USD" }).format(value));
 

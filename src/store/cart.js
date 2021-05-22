@@ -25,6 +25,30 @@ export default {
             if (index > -1) {
                 state.lines.splice(index, 1);
             }
+        },
+
+        // new code block to enhance persistent data storage to the cart using local storage API
+        setCartData(state, data) {
+            state.lines = data;
+        }
+    },
+    actions: {
+        loadCartData(context) {
+            let data = localStorage.getItem("cart");
+            if (data != null) {
+                context.commit("setCartData", JSON.parse(data));
+            }
+        },
+        storeCartData(context) {
+            localStorage.setItem("cart", JSON.stringify(context.state.lines));
+        },
+        clearCartData(context) {
+            context.commit("setCartData", []);
+        },
+        initializeCart(context, store) {
+            context.dispatch("loadCartData");
+            store.watch(state => state.cart.lines,
+                () => context.dispatch("storeCartData"), { deep: true});
         }
     }
 }

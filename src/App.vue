@@ -25,10 +25,12 @@ export default {
   },
 // the method below is used to get the stored restful data
   methods: {
-    ...mapActions(["getData"])
+    ...mapActions(["getData"]),
+    initializeCart: "cart/initializeCart"
   },
   created() {
     this.getData();
+    this.initializeCart(this.$store);
   }
 
 }
