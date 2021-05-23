@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
 import CartModule from "./cart";
+import OrdersModule from "./orders";
+
 
 Vue.use(Vuex);
 let testData = [];
@@ -22,7 +24,7 @@ for (let i = 1; i <= 12; i++) {
 }
 export default new Vuex.Store({
     strict: true,
-    modules: { cart: CartModule },  // used to implement the cart functionality
+    modules: { cart: CartModule, orders: OrdersModule  },  // used to implement the cart and order functionality
     state: {
         products: testData,
         categoriesData: [],
