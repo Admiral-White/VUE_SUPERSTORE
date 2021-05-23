@@ -22,20 +22,22 @@
 </template>
 
 <script>
+
+// ProductList component is used here as a child component to the Store component, same with CategoryControls
 import ProductList from "./ProductList";
 import CategoryControls from "./CategoryControls";
-// ProductList component is used here as a child component to the Store component, same with CategoryControls
-import CategoryControls from "./CategoryControls";
 import CartSummary from "./CartSummary";
+
 export default {
   components: { ProductList, CategoryControls, CartSummary }
+
 }
 
 // export default {
 //   name: "Store",
 //   components: { ProductList, CategoryControls }
 
-}
+// }
 </script>
 
 <style scoped>
