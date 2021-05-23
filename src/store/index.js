@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
 import CartModule from "./cart";
-import OrdersModule from "./orders";
+import OrdersModule from "./order";
 
 
 Vue.use(Vuex);
