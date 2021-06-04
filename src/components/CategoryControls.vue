@@ -13,7 +13,8 @@
 
 <script>
 
-import { mapState, mapGetters, mapMutations} from "vuex";
+// import { mapState, mapGetters, mapMutations} from "vuex";
+import { mapState, mapGetters, mapActions} from "vuex";
 export default {
   name: "CategoryControls",
   computed: {
@@ -22,7 +23,8 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setCurrentCategory"])
+    // ...mapMutations(["setCurrentCategory"])
+    ...mapActions(["setCurrentCategory"])
   }
 }
 

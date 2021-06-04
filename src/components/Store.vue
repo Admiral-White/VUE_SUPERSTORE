@@ -14,7 +14,8 @@
 <!--        <h4 class="text-white m-2">Products</h4>-->
 <!--      </div>-->
       <div class="col-9 p-2 ">
-        <product-list />
+        <Search/>
+        <product-list/>
       </div>
     </div>
 
@@ -27,10 +28,16 @@
 import ProductList from "./ProductList";
 import CategoryControls from "./CategoryControls";
 import CartSummary from "./CartSummary";
+import { mapMutations } from "vuex";
+import Search from "./Search";
 
 export default {
-  components: { ProductList, CategoryControls, CartSummary }
+  components: {ProductList, CategoryControls, CartSummary, Search},
+  methods: {
+    ...mapMutations(["setShowSearch"])
+    // components: { ProductList, CategoryControls, CartSummary }
 
+  }
 }
 
 // export default {

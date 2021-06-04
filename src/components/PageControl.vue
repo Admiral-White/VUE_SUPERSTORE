@@ -31,7 +31,7 @@
       </select>
     </div>
     <div class="text-right col">
-      <button v-bind:disabled="currentPage == 1"
+      <button v-bind:disabled="currentPage === 1"
               v-on:click="setCurrentPage(currentPage - 1)"
               class="btn btn-secondary mx -1">Previous</button>
       <span v-if="currentPage > 4">
@@ -50,7 +50,7 @@
 <button v-on:click="setCurrentPage(pageCount)"
         class="btn btn-secondary mx-1">{{ pageCount}}</button>
 </span>
-      <button v-bind:disabled="currentPage == pageCount"
+      <button v-bind:disabled="currentPage === pageCount"
               v-on:click="setCurrentPage(currentPage + 1)"
               class="btn btn-secondary mx-1">Next</button>
     </div>
@@ -59,7 +59,9 @@
 
 <script>
 
-import { mapState, mapGetters, mapMutations } from "vuex";
+// import { mapState, mapGetters, mapMutations } from "vuex";
+
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "PageControl",
@@ -89,7 +91,8 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setCurrentPage", "setPageSize"]),
+    // ...mapMutations(["setCurrentPage", "setPageSize"]),
+    ...mapActions(["setCurrentPage", "setPageSize"]),
     changePageSize($event) {
       this.setPageSize(Number($event.target.value));
     }
