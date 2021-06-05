@@ -236,7 +236,7 @@ export default new Vuex.Store({
         pages: [],
         serverPageCount: 0,
         searchTerm: "",
-        showSearch: false
+        showSearch: true  // this made the search functionality come alive
     },
     getters: {
         processedProducts: (state) => {
