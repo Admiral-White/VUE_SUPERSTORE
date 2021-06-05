@@ -215,6 +215,7 @@ import Vuex from "vuex";
 import Axios from "axios";
 import CartModule from "./cart";
 import OrdersModule from "./order";
+import AuthModule from "./auth";  // used for authentication feature
 
 
 Vue.use(Vuex);
@@ -226,7 +227,7 @@ let categoriesUrl = `${baseUrl}/categories`;
 
 export default new Vuex.Store({
     strict: true,
-    modules: { cart: CartModule, orders: OrdersModule },
+    modules: { cart: CartModule, orders: OrdersModule, auth: AuthModule },
     state: {
         categoriesData: [],
 
