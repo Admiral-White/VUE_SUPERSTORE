@@ -36,7 +36,7 @@
 //   name: "ProductAdmin"
 // }
 
-import PageControls from "../PageControls";
+import PageControls from "../PageControl";
 import { mapGetters, mapActions } from "vuex";
 export default {
   components: { PageControls },
